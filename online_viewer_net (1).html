@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Excellence - Class Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #1e3a5f;
+            min-height: 100vh;
+        }
+        
+        .banner {
+            width: 100%;
+            max-height: 300px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1e3a5f;
+        }
+        
+        .banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: #d4af37;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: #d4af37;
+            font-style: italic;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, #2d4a6f 0%, #1e3a5f 100%);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #d4af37;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3);
+            border-color: #f4d03f;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #d4af37;
+            background: linear-gradient(135deg, #3d5a8f 0%, #2d4a6f 100%);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #d4af37;
+            color: #1e3a5f;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .price-container {
+            margin-bottom: 10px;
+        }
+        
+        .original-price {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            text-decoration: line-through;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .savings {
+            display: inline-block;
+            background: #d4af37;
+            color: #1e3a5f;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .price-detail {
+            color: #a8c5e6;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .features li {
+            padding: 10px 0;
+            color: #e8e8e8;
+            border-bottom: 1px solid #3d5a8f;
+        }
+        
+        .features li:before {
+            content: "✓ ";
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .payment-button {
+            width: 100%;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .payment-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+        }
+        
+        .payment-button:active {
+            transform: scale(0.98);
+        }
+        
+        @media (max-width: 768px) {
+            .banner {
+                max-height: 200px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .price {
+                font-size: 2.5rem;
+            }
+            
+            .original-price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <img src="Own-Your-Execution.-Own-Your-Freedom.jpg" alt="Execution Excellence Banner">
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Join Our Execution Excellence Class</h1>
+            <p>Choose the payment option that works best for you</p>
+        </div>
+        
+        <div class="pricing-cards">
+            <!-- One-Time Payment Option -->
+            <div class="pricing-card featured">
+                <span class="badge">Best Value</span>
+                <div class="plan-name">Pay in Full</div>
+                <div class="price-container">
+                    <div class="original-price">$3,500</div>
+                    <div class="price">$2,026</div>
+                    <span class="savings">Save $1,474 (42%)</span>
+                </div>
+                <div class="price-detail">One-time payment</div>
+                <ul class="features">
+                     <li>A complete tactical plan to achieve goals in 12-week sprints rather than annual horizons.</li>
+                    <li>Implement a congruent plan for Sphere, Chase, and Attraction strategies to ensure a full pipeline.</li>
+                    <li>Weekly "truth-telling" scorecards to track leading indicators (actions) and execution, not just results.</li>
+                </ul>
+                <button class="payment-button" onclick="redirectToCheckout('one-time')">
+                    Pay $2,026 Now
+                </button>
+            </div>
+            
+            <!-- Installment Payment Option -->
+            <div class="pricing-card">
+                <div class="plan-name">Installment Plan</div>
+                <div class="price-container">
+                    <div class="original-price">$1,250</div>
+                    <div class="price">$750</div>
+                    <span class="savings">Save $500 (40%)</span>
+                </div>
+                <div class="price-detail">Three Monthly Installments</div>
+                <ul class="features">
+                    <li>A complete tactical plan to achieve goals in 12-week sprints rather than annual horizons.</li>
+                    <li>Implement a congruent plan for Sphere, Chase, and Attraction strategies to ensure a full pipeline.</li>
+                    <li>Weekly "truth-telling" scorecards to track leading indicators (actions) and execution, not just results.</li>
+                </ul>
+                <button class="payment-button" onclick="redirectToCheckout('installment')">
+                    Pay $750 / Every Three Months
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Initialize Stripe with your publishable key
+        // REPLACE WITH YOUR ACTUAL PUBLISHABLE KEY
+        const stripe = Stripe('pk_test_REPLACE_WITH_YOUR_PUBLISHABLE_KEY');
+        
+        function redirectToCheckout(plan) {
+            // Option 1: If using backend endpoints (recommended)
+            const endpoints = {
+                'one-time': '/create-checkout-session-one-time',
+                'installment': '/create-checkout-session-installment'
+            };
+            
+            fetch(endpoints[plan], {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                return stripe.redirectToCheckout({ sessionId: data.id });
+            })
+            .then(result => {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+            
+            // Option 2: If using Payment Links (no backend needed - EASIEST)
+            // Uncomment the lines below and replace with your actual Payment Link URLs from Stripe
+            /*
+            const paymentLinks = {
+                'one-time': 'https://buy.stripe.com/YOUR_ONE_TIME_PAYMENT_LINK',
+                'installment': 'https://buy.stripe.com/YOUR_INSTALLMENT_PAYMENT_LINK'
+            };
+            
+            window.location.href = paymentLinks[plan];
+            */
+        }
+    </script>
+</body>
+</html>
